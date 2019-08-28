@@ -5,10 +5,19 @@ const app = express();
 
 const scraper = require('./scraper.js');
 
-app.get('/',(req,res)=>{
-    scraper.getTorrentList('lagaan 2001')
+app.get('/:title',(req,res)=>{
+    scraper.getTorrentList(req.params.title)
     .then((torrents)=>{
         res.json(torrents);
+    },(error)=>{
+        res.status(400).json({message : error});
+    });
+});
+
+app.get('/getTorrent/:id',(req,res)=>{
+    scraper.getTorrentDetails(req.params.id)
+    .then((torrent)=>{
+        res.json(torrent);
     },(error)=>{
         res.status(400).json({message : error});
     });

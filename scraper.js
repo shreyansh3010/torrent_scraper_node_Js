@@ -11,7 +11,6 @@ module.exports.getTorrentList = (title)=>{
         getLatestAddress()
         .then((baseUrl)=>{
             quaryUrl = `https://${baseUrl}/s/?q=${title}&page=0&orderby=99`;
-            torrentSearchUrl = `https://${baseUrl}/torrent/`;
             request(quaryUrl,(error,response,html)=>{
                 if (!error && response.statusCode == 200) {
                     const $ = cheerio.load(html);
@@ -36,6 +35,27 @@ module.exports.getTorrentList = (title)=>{
         },(error)=>{
             console.log(erroe);
             reject('error occured');
+        });
+    });
+}
+
+module.exports.getTorrentDetails = (torrentID)=>{
+    return new Promise((resolve,reject)=>{
+        getLatestAddress()
+        .then((baseUrl)=>{
+            torrentSearchUrl = `https://${baseUrl}/torrent`;
+            request(`${torrentSearchUrl}/${torrentID}`,(error,response,html)=>{
+                if (!error && response.statusCode == 200) {
+                    const $ = cheerio.load(html);
+                    const torrent = {
+                        magnetLink : $('.download a').attr('href')
+                    }
+                    resolve(torrent);
+                }
+                else{
+                    reject('error occured');
+                }
+            });
         });
     });
 }
