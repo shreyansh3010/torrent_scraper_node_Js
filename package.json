@@ -1,0 +1,34 @@
+{
+  "name": "torrent_scraper_node_js",
+  "version": "1.0.0",
+  "description": "A node JS scraper for torrent magnet links",
+  "main": "server.js",
+  "scripts": {
+    "start" : "node server.js",
+    "start:server" : "nodemon server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shreyansh3010/torrent_scraper_node_Js.git"
+  },
+  "keywords": [
+    "torrent",
+    "scraper",
+    "node.js"
+  ],
+  "author": "shreyansh3010",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/shreyansh3010/torrent_scraper_node_Js/issues"
+  },
+  "homepage": "https://github.com/shreyansh3010/torrent_scraper_node_Js#readme",
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.3",
+    "express": "^4.17.1",
+    "request": "^2.88.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.1"
+  }
+}
